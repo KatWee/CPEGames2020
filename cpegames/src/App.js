@@ -47,6 +47,7 @@ class App extends Component{
         <div>
             <h1><a href="/header">Header</a></h1>
             <h1><a href="/body">Body</a></h1>
+            <h1><a href="/">Home</a></h1>
         </div>
       );
   }
