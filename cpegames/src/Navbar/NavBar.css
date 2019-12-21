@@ -1,0 +1,23 @@
+.navbar{
+    background-color: #717171;
+}
+
+.navbar-light .navbar-brand{
+    color: white;
+    margin: auto;
+    font-size: 30px;
+}
+
+a{
+    color: white;
+}
+
+a:hover{
+    color: white;
+    text-decoration:none;
+}
+
+li{
+    text-align: right;
+    font-size: 20px;
+}
