@@ -1,0 +1,40 @@
+cd C:\Users\Kat\Documents\web\CPEGames\cpegame
+node -v
+npm -v
+npm install ceate-react-app --save
+create-react-app cpegame
+cd Users\Kat\Documents\web\CPEGames
+npm install create-react-app --save
+ create-react-app cpegames
+npm uninstall -g create-react-app
+npx create-react-app cpegames
+npm
+npm install-react-router
+npm install react-router
+npm install react-router-dom --save
+C:\Users\Kat\Documents\web\CPEGames\cpegames
+npm install --save reactstrap react react-dom
+npm install --save bootstrap
+npm install -g firebase-tools
+npm init
+npm install --save firebase
+firebase login
+firebase init
+firebase deploy --only hosting:cpegames-2020
+yarn add firebase
+cd C:\Users\Kat\Documents\web\CPEGames\cpegames
+npm install firebase/firestore
+npm install firebase\firestore
+cd
+cd cpegames
+npm install react-dev-utils@^5.0.2  -g
+npm install
+npm i
+go version
+cd desktop
+C:\Users\Kat\Desktop
+cd C:\Users\Kat\Desktop
+go run main.go
+cd ..
+npm install antd
+npm start

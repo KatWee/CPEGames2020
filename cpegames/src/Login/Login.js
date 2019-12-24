@@ -9,8 +9,12 @@ import {
   FormText
 } from "reactstrap";
 import LoginCSS from "./Login.css";
-import auth from '../firebase/index';
+import firebase from '../firebase'
 import {withRouter} from 'react-router';
+
+
+const UserRef = firebase.firestore.collection("User");
+const myStorage = localStorage;
 
 class Login extends Component {
   // componentDidMount() {
@@ -45,10 +49,18 @@ class Login extends Component {
 
     const { email, password } = this.state
 
-    auth
+    firebase.auth
       .signInWithEmailAndPassword(email, password)
       .then(response => {
-        this.props.history.push('/admin')
+        const UID = UserRef.where('userUID','==',response.user.uid)
+        .get().then(doc => {
+          doc.forEach(data =>{
+            console.log("userName",data.data().UserName)
+            myStorage.setItem('admin', data.data().UserName);
+            console.log(myStorage.getItem('admin'))
+          })
+          this.props.history.push('/admin')
+        })
         // this.setState({
         //   currentUser: response.user
         // })
@@ -69,6 +81,12 @@ class Login extends Component {
   //   })
   // }
   render() {
+    // UserRef.get().then(d =>{
+    //   d.forEach(e => {
+    //     console.log(e.data())
+    //   })
+    // })
+
     return (
       <Form onSubmit={this.onSubmit}>
         <h1>HELLO ADMIN</h1>

@@ -10,11 +10,11 @@ import {
 } from "reactstrap";
 import NavBarCss from "./NavBar.css";
 import { Link } from "react-router-dom";
-import auth from "../firebase/index";
+import firebase from "../firebase/index";
 
 // const [isOpen, setIsOpen] = useState(false);
 // const toggle = () => setIsOpen(!isOpen);
-
+const myStorage = localStorage;
 class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +25,7 @@ class NavBar extends Component {
   }
 
   componentDidMount() {
-    auth.onAuthStateChanged(user => {
+    firebase.auth.onAuthStateChanged(user => {
       if (user) {
         this.setState({
           currentUser: user
@@ -44,7 +44,8 @@ class NavBar extends Component {
 
   logout = e => {
     e.preventDefault();
-    auth.signOut().then(response => {
+    firebase.auth.signOut().then(response => {
+      myStorage.clear();
       this.props.history.push("/user");
       this.setState({
         currentUser: null
@@ -52,7 +53,7 @@ class NavBar extends Component {
     });
   };
   render() {
-    console.log("user", auth);
+    //console.log("user", auth);
     return (
       <div>
         <Navbar color="faded" light>
@@ -69,7 +70,7 @@ class NavBar extends Component {
               {this.state.currentUser ? (
                 <React.Fragment>
                   <NavItem>
-                    <NavbarText onClick={this.toggle}>Hello</NavbarText>
+              <NavbarText onClick={this.toggle}>Hello {myStorage.getItem('admin')}</NavbarText>
                   </NavItem>
                   <NavItem>
                     <Link onClick={this.logout}>Logout</Link>

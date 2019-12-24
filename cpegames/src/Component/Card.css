@@ -1,0 +1,16 @@
+.ant-card{
+    margin : auto;
+    border-radius:15px;
+    width: 70%;
+}
+
+.ant-card-head{
+    font-size: 20px;
+}
+
+p{
+    margin: auto;
+    text-align: center;
+    font-size: 150px;
+    color: black;
+}

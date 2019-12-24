@@ -1,20 +1,13 @@
 import React, { Component } from "react";
-import {
-  Col,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText
-} from "reactstrap";
-import auth from '../firebase/index';
+import Score from '../Component/ScoreBoard'
 
 class Admin extends Component {
 
   render() {
       return (
-        <h1>admin</h1>
+        <div>
+          <Score/>
+        </div>
     );
   }
 }
