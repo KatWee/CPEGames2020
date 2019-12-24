@@ -1,16 +1,22 @@
-.ant-card{
-    margin : auto;
-    border-radius:15px;
-    width: 70%;
-}
-
-.ant-card-head{
-    font-size: 20px;
-}
-
 p{
     margin: auto;
     text-align: center;
     font-size: 150px;
+    color: black;
+}
+
+.ant-tabs{
+    background-color: white;
+    margin: auto;
+    width: 80%;
+    border-radius: 20px;
+}
+
+.ant-tabs-nav-scroll{
+    background-color: #2C2C2C;
+}
+
+.ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-tab-active{
+    font-size: 20px;
     color: black;
 }
