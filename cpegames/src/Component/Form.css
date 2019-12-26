@@ -1,0 +1,22 @@
+.ant-form label{
+    font-size: 20px;
+}
+
+.ant-input{
+    font-size: 20px;
+    height: 40px;
+}
+
+.ant-select-selection__placeholder, .ant-select-search__field__placeholder{
+    font-size: 20px;
+}
+
+.ant-select-selection--single{
+    height: 40px;
+}
+
+.ant-btn-primary{
+    font-size: 20px;
+    width: 40%;
+    height: 40px;
+}

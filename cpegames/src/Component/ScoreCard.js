@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Card } from "antd";
 import CardCSS from "./Card.css";
-import { Tag } from "antd";
 import { Tabs } from "antd";
 
 class ScoreCard extends Component {

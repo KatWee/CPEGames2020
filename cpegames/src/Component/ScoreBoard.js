@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import ScoreCard from "./ScoreCard";
-import { Row, Col } from "antd";
+import { Row, Col, Tabs } from "antd";
+import RecordBoard from "./Record";
+import ScoreForm from "./ScoreForm";
 
+const { TabPane } = Tabs;
 class ScoreBoard extends Component {
   render() {
     return (
@@ -19,6 +22,24 @@ class ScoreBoard extends Component {
           <Col span={12}>
             <ScoreCard team={"devil"} />
           </Col>
+        </Row>
+        <Row>
+          <div className="card-container">
+            <Tabs
+              type="card"
+              style={{
+                width: "90%",
+                marginTop: "40px"
+              }}
+            >
+              <TabPane tab="Score Record" key="1">
+                <RecordBoard />
+              </TabPane>
+              <TabPane tab="Score Record" key="2">
+                <ScoreForm/>
+              </TabPane>
+            </Tabs>
+          </div>
         </Row>
       </div>
     );

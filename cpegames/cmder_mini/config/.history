@@ -36,6 +36,6 @@ C:\Users\Kat\Desktop
 cd C:\Users\Kat\Desktop
 go run main.go
 npm install antd
-cd ..
 mpm start
+cd ..
 npm start
