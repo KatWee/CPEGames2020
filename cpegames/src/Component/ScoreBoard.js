@@ -3,6 +3,7 @@ import ScoreCard from "./ScoreCard";
 import { Row, Col, Tabs } from "antd";
 import RecordBoard from "./Record";
 import ScoreForm from "./ScoreForm";
+import AdminRecord from "./AdminRecord"
 
 const { TabPane } = Tabs;
 class ScoreBoard extends Component {
@@ -35,8 +36,11 @@ class ScoreBoard extends Component {
               <TabPane tab="Score Record" key="1">
                 <RecordBoard />
               </TabPane>
-              <TabPane tab="Score Record" key="2">
+              <TabPane tab="Add Record" key="2">
                 <ScoreForm/>
+              </TabPane>
+              <TabPane tab="Score Record" key="3">
+                <AdminRecord/>
               </TabPane>
             </Tabs>
           </div>

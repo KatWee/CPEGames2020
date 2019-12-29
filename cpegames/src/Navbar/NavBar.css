@@ -8,11 +8,11 @@
     font-size: 30px;
 }
 
-a{
+.NavLink{
     color: white;
 }
 
-a:hover{
+.NavLink:hover{
     color: white;
     text-decoration:none;
 }
