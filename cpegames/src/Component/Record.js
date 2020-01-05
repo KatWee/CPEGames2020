@@ -7,10 +7,6 @@ const columns = [
     dataIndex: "game"
   },
   {
-    title: "Date",
-    dataIndex: "date"
-  },
-  {
     title: "Team",
     dataIndex: "team"
   },
@@ -25,7 +21,6 @@ for (let i = 0; i < 20; i++) {
   data.push({
     key: i,
     game: `game ${i}`,
-    date: i,
     team: `team ${i}`,
     score: i
   });

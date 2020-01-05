@@ -38,4 +38,6 @@ go run main.go
 npm install antd
 mpm start
 cd ..
+npm i firebase --save
+npm install trim
 npm start
