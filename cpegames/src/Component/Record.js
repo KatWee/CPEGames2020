@@ -17,41 +17,40 @@ const columns = [
   }
 ];
 
-const array = [];
 var RecordRef = firebase.database().ref();
+const fetchData = () => new Promise((resolve, reject) => {
+    const arrayTemp = []
     RecordRef.on("value", function(snapshot) {
-      snapshot.forEach(function(data) {
-        // console.log(
-        //   "game"+data.val().game+
-        //   "prize"+data.val().prize+
-        //   "team"+data.val().team+
-        //   "score"+data.val().score
-        //   );
-        array.push({
-          record: `${data.val().prize} Prize ${data.val().game}`,
-          team: `${data.val().team}`,
-          score: `${data.val().score}`
-        },);
+        snapshot.forEach(function(data) {
+          arrayTemp.push({
+            record: `${data.val().prize} Prize ${data.val().game}`,
+            team: `${data.val().team}`,
+            score: `${data.val().score}`
+          });
+        });
+        return resolve(array)
       });
-    });
-
-// for (let i = 0; i < 20; i++) {
-//   data.push({
-//     key: i,
-//     record: `record ${i}`,
-//     team: `team ${i}`,
-//     score: i
-//   });
-// }
+})
 
 class RecordBoard extends Component {
+  constructor(props){
+    super(props);
+    this.state  = {
+      array: [],
+    }
+  }
+
+  componentDidMount = async () => {
+    const data = await fetchData()
+    return this.setState({array:data})
+  }
+
   render() {
-    console.log(array);
     return (
       <div>
         <Table
           columns={columns}
-          dataSource={array}
+          dataSource={this.state.array}
           pagination={{ pageSize: 10 }}
           scroll={{ y: 250 }}
         />
