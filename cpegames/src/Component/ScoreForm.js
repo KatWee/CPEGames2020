@@ -6,6 +6,8 @@ import { Form,
     Col,
 } from 'antd';
 import FromCSS from "./Form.css";
+import firebase from "firebase";
+
 const formItemLayout ={
             labelCol: { span: 4 },
             wrapperCol: { span: 18 },
@@ -25,10 +27,11 @@ class ScoreForm extends Component {
     this.ChangePrize = this.ChangePrize.bind(this);
     this.ChangeTeam = this.ChangeTeam.bind(this);
     this.ChangeScore = this.ChangeScore.bind(this)
+    this.SubmitHandler = this.SubmitHandler.bind(this)
   }
 
   ChangeGame = (event) => {
-    console.log("game "+event.target.value);
+    //console.log("game "+event.target.value);
     this.props.form.setFieldsValue({
       ['game']: event.target.value,
   });
@@ -38,7 +41,7 @@ class ScoreForm extends Component {
     const { getFieldsValue } = this.props.form;
     setTimeout(function(){
       const Value = getFieldsValue();
-      console.log(Value.prize);
+      //console.log(Value.prize);
     },0)
   }
 
@@ -46,12 +49,12 @@ class ScoreForm extends Component {
     const { getFieldsValue } = this.props.form;
     setTimeout(function(){
       const Value = getFieldsValue();
-      console.log(Value.Team);
+      //console.log(Value.Team);
     },0)
   }
 
   ChangeScore = (event) => {
-    console.log("score "+event.target.value);
+    //console.log("score "+event.target.value);
     this.props.form.setFieldsValue({
       ['score']: event.target.value,
   });
@@ -60,6 +63,15 @@ class ScoreForm extends Component {
   SubmitHandler = (event) => {
     event.preventDefault();
     console.log(this.props.form.getFieldsValue());
+    const RecordRef = firebase.database().ref();
+    const Record ={
+      game: this.props.form.getFieldsValue().game,
+      prize: this.props.form.getFieldsValue().prize,
+      team: this.props.form.getFieldsValue().team,
+      score: this.props.form.getFieldsValue().score,
+    }
+    RecordRef.push(Record);
+    this.props.form.resetFields();
   }
 
   render() {
@@ -80,10 +92,10 @@ class ScoreForm extends Component {
             rules: [{ required: true, message: 'Please Select Prize!' }],
           })(
           <Select placeholder="Prize for game" name='prize' onChange={this.ChangePrize}>
-            <Option value="1">1st Prize</Option>
-            <Option value="2">2nd Prize</Option>
-            <Option value="3">3rd Prize</Option>
-            <Option value="4">Attended</Option>
+            <Option value="1st">1st Prize</Option>
+            <Option value="2nd">2nd Prize</Option>
+            <Option value="3rd">3rd Prize</Option>
+            <Option value="Attended">Attended</Option>
           </Select>
         )}
           </Form.Item>
@@ -92,8 +104,8 @@ class ScoreForm extends Component {
             rules: [{ required: true, message: 'Please Select Team!' }],
           })(
           <Select placeholder="Angel Or Devil Team" name='team' onChange={this.ChangeTeam}>
-              <Option value="angel">Angel : Odd</Option>
-              <Option value="devil">Devil : Even</Option>
+              <Option value="Angel">Angel : Odd</Option>
+              <Option value="Devil">Devil : Even</Option>
             </Select>
           )}
 

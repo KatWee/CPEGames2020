@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Table } from "antd";
+import firebase from "firebase";
 
 const columns = [
   {
-    title: "Game",
-    dataIndex: "game"
+    title: "Record",
+    dataIndex: "record"
   },
   {
     title: "Team",
@@ -16,23 +17,41 @@ const columns = [
   }
 ];
 
-const data = [];
-for (let i = 0; i < 20; i++) {
-  data.push({
-    key: i,
-    game: `game ${i}`,
-    team: `team ${i}`,
-    score: i
-  });
-}
+const array = [];
+var RecordRef = firebase.database().ref();
+    RecordRef.on("value", function(snapshot) {
+      snapshot.forEach(function(data) {
+        // console.log(
+        //   "game"+data.val().game+
+        //   "prize"+data.val().prize+
+        //   "team"+data.val().team+
+        //   "score"+data.val().score
+        //   );
+        array.push({
+          record: `${data.val().prize} Prize ${data.val().game}`,
+          team: `${data.val().team}`,
+          score: `${data.val().score}`
+        },);
+      });
+    });
+
+// for (let i = 0; i < 20; i++) {
+//   data.push({
+//     key: i,
+//     record: `record ${i}`,
+//     team: `team ${i}`,
+//     score: i
+//   });
+// }
 
 class RecordBoard extends Component {
   render() {
+    console.log(array);
     return (
       <div>
         <Table
           columns={columns}
-          dataSource={data}
+          dataSource={array}
           pagination={{ pageSize: 10 }}
           scroll={{ y: 250 }}
         />

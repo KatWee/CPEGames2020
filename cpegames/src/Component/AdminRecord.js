@@ -4,8 +4,8 @@ import CSS from "./AdminRecore.css"
 
 const columns = [
   {
-    title: "Game",
-    dataIndex: "game"
+    title: "Record",
+    dataIndex: "record"
   },
   {
     title: "Team",
@@ -39,7 +39,7 @@ const data = [];
 for (let i = 0; i < 20; i++) {
   data.push({
     key: i,
-    game: `game ${i}`,
+    record: `record ${i}`,
     team: `team ${i}`,
     score: i
   });
