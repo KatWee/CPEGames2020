@@ -1,3 +1,4 @@
+import * as firebase from 'firebase';
 const config = {
   apiKey: "AIzaSyBy7xKONK1gKPTdxV9TrPdSKhfSe3lOr0I",
   authDomain: "cpegames.firebaseapp.com",

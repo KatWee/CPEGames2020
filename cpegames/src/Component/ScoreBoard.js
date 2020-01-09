@@ -3,7 +3,7 @@ import ScoreCard from "./ScoreCard";
 import { Row, Col, Tabs } from "antd";
 import RecordBoard from "./Record";
 import ScoreForm from "./ScoreForm";
-import AdminRecord from "./AdminRecord"
+import AdminRecord from "./AdminRecord";
 
 const { TabPane } = Tabs;
 class ScoreBoard extends Component {

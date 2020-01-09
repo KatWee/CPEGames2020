@@ -35,9 +35,9 @@ cd desktop
 C:\Users\Kat\Desktop
 cd C:\Users\Kat\Desktop
 go run main.go
-npm install antd
 mpm start
-cd ..
 npm i firebase --save
 npm install trim
+npm install antd
+cd ..
 npm start
