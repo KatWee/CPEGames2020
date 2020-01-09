@@ -21,62 +21,94 @@ class ScoreForm extends Component {
       team:'',
       score:null,
     };
-  }
-
-  ChangeHandler = (event) => {
-    console.log(event.target.name);
-    console.log(event.target.value);
-    let Name = event.target.name;
-    let Value = event.target.value;
-    console.log(Name);
-    console.log(Value);
-    this.setState({[Name]: Value});
-    console.log(this.state);
+    this.ChangeGame = this.ChangeGame.bind(this);
+    this.ChangePrize = this.ChangePrize.bind(this);
+    this.ChangeTeam = this.ChangeTeam.bind(this);
+    this.ChangeScore = this.ChangeScore.bind(this)
   }
 
   ChangeGame = (event) => {
-    console.log(event.target.name);
-    console.log(event.target.value);
-    this.setState({game: event.target.value});
-    console.log(this.state);
+    console.log("game "+event.target.value);
+    this.props.form.setFieldsValue({
+      ['game']: event.target.value,
+  });
+  }
+
+  ChangePrize = (event) => {
+    const { getFieldsValue } = this.props.form;
+    setTimeout(function(){
+      const Value = getFieldsValue();
+      console.log(Value.prize);
+    },0)
+  }
+
+  ChangeTeam = (event) => {
+    const { getFieldsValue } = this.props.form;
+    setTimeout(function(){
+      const Value = getFieldsValue();
+      console.log(Value.Team);
+    },0)
+  }
+
+  ChangeScore = (event) => {
+    console.log("score "+event.target.value);
+    this.props.form.setFieldsValue({
+      ['score']: event.target.value,
+  });
   }
 
   SubmitHandler = (event) => {
     event.preventDefault();
-    console.log(this.state)
+    console.log(this.props.form.getFieldsValue());
   }
 
   render() {
+    const { getFieldDecorator } = this.props.form;
     return (
       <div>
-        <Form>
+        <Form onSubmit={this.SubmitHandler}>
           <Form.Item label="Game" {...formItemLayout}>
-            <Input placeholder="CPE Game"  name="game" onChange={this.ChangeGame}/>
+          {getFieldDecorator('game', {
+            rules: [{ required: true, message: 'Please input game!' }],
+            onChange:this.ChangeGame
+          })(
+            <Input placeholder="CPE Game" name="game"/>
+          )}
           </Form.Item>
           <Form.Item label="Prize" hasFeedback {...formItemLayout}>
-            <Select placeholder="Prize for game" name='prize' onChange={this.ChangeHandler}>
-              <Option value="1">1st Prize</Option>
-              <Option value="2">2nd Prize</Option>
-              <Option value="3">3rd Prize</Option>
-              <Option value="4">Attended</Option>
-            </Select>
+          {getFieldDecorator('prize', {
+            rules: [{ required: true, message: 'Please Select Prize!' }],
+          })(
+          <Select placeholder="Prize for game" name='prize' onChange={this.ChangePrize}>
+            <Option value="1">1st Prize</Option>
+            <Option value="2">2nd Prize</Option>
+            <Option value="3">3rd Prize</Option>
+            <Option value="4">Attended</Option>
+          </Select>
+        )}
           </Form.Item>
           <Form.Item label="Team" hasFeedback {...formItemLayout}>
-            <Select placeholder="Angel Or Devil Team"
-            name='team'
-            onChange={this.ChangeHandler}
-            >
+          {getFieldDecorator('team', { 
+            rules: [{ required: true, message: 'Please Select Team!' }],
+          })(
+          <Select placeholder="Angel Or Devil Team" name='team' onChange={this.ChangeTeam}>
               <Option value="angel">Angel : Odd</Option>
               <Option value="devil">Devil : Even</Option>
             </Select>
+          )}
+
           </Form.Item>
           <Form.Item label="Score" {...formItemLayout}>
-            <Input type="number" name='score' onChange={this.ChangeHandler}/>
+          {getFieldDecorator('score', { 
+            rules: [{ required: true, message: 'Please input Score!' }],
+            onChange:this.ChangeScore
+          })(<Input type="number" name='score'/>
+          )}
           </Form.Item>
           <Col span={18}></Col>
           <Col span={6}>
           <Form.Item>
-          <Button type="primary" onClick={this.SubmitHandler}>
+          <Button type="primary" htmlType="submit">
             Submit
           </Button>
         </Form.Item>
@@ -86,4 +118,4 @@ class ScoreForm extends Component {
     );
   }
 }
-export default ScoreForm;
+export default Form.create()(ScoreForm);
