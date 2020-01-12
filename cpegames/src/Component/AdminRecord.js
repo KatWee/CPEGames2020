@@ -72,6 +72,7 @@ class AdminRecordBoard extends Component {
         dataIndex: "score",
         editable: true,
       },
+
       {
         title: "Delete",
         key: "delete",
@@ -88,7 +89,7 @@ class AdminRecordBoard extends Component {
             </Popconfirm>
           </span>
         )
-      }
+      },
     ];
     return (
       <div>
