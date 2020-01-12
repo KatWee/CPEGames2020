@@ -1,20 +1,22 @@
 import React, { Component } from "react";
-import { Card } from "antd";
+import { Card,Tabs } from "antd";
 import CardCSS from "./Card.css";
-import { Tabs } from "antd";
+
+
+const { TabPane } = Tabs;
 
 class ScoreCard extends Component {
   render() {
     const teamName = this.props.team.toUpperCase();
+    const score = this.props.score;
     const CardTitle = `${teamName} SCORE`;
     const teamColor = this.props.team == "angel" ? "#467DFF" : "#FF6369";
-    const { TabPane } = Tabs;
     return (
       <div>
         <div className="card-container">
           <Tabs type="card" >
             <TabPane tab={CardTitle} key="1">
-              <p style={{ color: `${teamColor}` }}>100</p>
+              <p style={{ color: `${teamColor}` }}>{score}</p>
             </TabPane>
           </Tabs>
         </div>

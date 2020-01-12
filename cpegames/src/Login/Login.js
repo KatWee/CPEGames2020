@@ -36,6 +36,9 @@ class Login extends Component {
       currentUser: null,
       message: ""
     };
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
   onChange = e => {
     const { name, value } = e.target
@@ -120,7 +123,7 @@ class Login extends Component {
             />
           </Col>
         </FormGroup>
-        <Button size="lg" color="success">
+        <Button size="lg" color="success" type="submit">
           Login
         </Button>
       </Form>

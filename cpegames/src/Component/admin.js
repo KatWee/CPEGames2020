@@ -21,7 +21,7 @@ const fetchData = () => new Promise((resolve, reject) => {
       return resolve(arrayTemp);
     });
 })
-class ScoreBoard extends Component {
+class Admin extends Component {
   constructor(props){
     super(props);
     this.state  = {
@@ -39,16 +39,16 @@ class ScoreBoard extends Component {
     var angel = 0;
     var devil = 0;
     this.state.array.forEach(element => {
-    if(element.team === "Devil")
-    {
-      angel = angel+Number(element.score);
-    }else{
-     devil = devil+Number(element.score);
-    }
-    });
+      if(element.team === "Devil")
+      {
+        angel = angel+Number(element.score);
+      }else{
+       devil = devil+Number(element.score);
+      }
+      });
 
-    this.state.devilScore = 0;
-    this.state.angelScore = 0;
+      this.state.devilScore = 0;
+      this.state.angelScore = 0;
 
     return (
       <div>
@@ -76,7 +76,10 @@ class ScoreBoard extends Component {
               }}
             >
               <TabPane tab="Score Record" key="1">
-                <RecordBoard />
+                <AdminRecord/>
+              </TabPane>
+              <TabPane tab="Add Record" key="2">
+                <ScoreForm/>
               </TabPane>
             </Tabs>
           </div>
@@ -85,4 +88,4 @@ class ScoreBoard extends Component {
     );
   }
 }
-export default ScoreBoard;
+export default Admin;

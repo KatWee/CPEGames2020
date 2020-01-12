@@ -59,7 +59,7 @@ class NavBar extends Component {
         <Navbar color="faded" light>
           <NavbarBrand className="mr-auto">
             {this.state.currentUser ? (
-              <Link to="/admin" className="NavLink">CPE GAMES 2020</Link>
+              <Link to="/admin" className="NavLink">ADMIN CPE GAMES 2020</Link>
             ) : (
               <Link to="/user" className="NavLink">CPE GAMES 2020</Link>
             )}

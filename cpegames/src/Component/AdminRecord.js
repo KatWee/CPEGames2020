@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Popconfirm, message, Table } from "antd";
+import {Popconfirm, message, Table,Modal} from "antd";
 import CSS from "./AdminRecore.css";
 import firebase from "firebase";
 
@@ -41,7 +41,7 @@ class AdminRecordBoard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      array: []
+      array: [],
     };
   }
 
@@ -72,7 +72,15 @@ class AdminRecordBoard extends Component {
         dataIndex: "score",
         editable: true,
       },
-
+      {
+        title: "Edit",
+        key: "edit",
+        render: (text, record) => (
+          <span>
+              <a className="TableLink" >Edit</a>
+          </span>
+        )
+      },
       {
         title: "Delete",
         key: "delete",
@@ -91,6 +99,7 @@ class AdminRecordBoard extends Component {
         )
       },
     ];
+
     return (
       <div>
         <Table

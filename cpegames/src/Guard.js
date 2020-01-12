@@ -5,7 +5,7 @@ const myStorage = localStorage;
 function Guard(props) {
     if(!myStorage.getItem('admin'))
     {
-        console.log('redirrecting')
+        //console.log('redirrecting')
         props.history.push('/user')
     }
      console.log(myStorage.getItem('admin'))

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Score from '../Component/ScoreBoard'
+import AdminScore from '../Component/admin'
 
 class Admin extends Component {
 
   render() {
       return (
         <div>
-          <Score/>
+          <AdminScore/>
         </div>
     );
   }
