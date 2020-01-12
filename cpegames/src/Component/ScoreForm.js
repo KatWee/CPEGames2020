@@ -22,6 +22,7 @@ class ScoreForm extends Component {
       prize:'',
       team:'',
       score:null,
+      timeStamp:'',
     };
     this.ChangeGame = this.ChangeGame.bind(this);
     this.ChangePrize = this.ChangePrize.bind(this);
@@ -100,7 +101,7 @@ class ScoreForm extends Component {
         )}
           </Form.Item>
           <Form.Item label="Team" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('team', { 
+          {getFieldDecorator('team', {
             rules: [{ required: true, message: 'Please Select Team!' }],
           })(
           <Select placeholder="Angel Or Devil Team" name='team' onChange={this.ChangeTeam}>
@@ -111,7 +112,7 @@ class ScoreForm extends Component {
 
           </Form.Item>
           <Form.Item label="Score" {...formItemLayout}>
-          {getFieldDecorator('score', { 
+          {getFieldDecorator('score', {
             rules: [{ required: true, message: 'Please input Score!' }],
             onChange:this.ChangeScore
           })(<Input type="number" name='score'/>

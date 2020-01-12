@@ -4,8 +4,12 @@ import firebase from "firebase";
 
 const columns = [
   {
-    title: "Record",
-    dataIndex: "record"
+    title: "Game",
+    dataIndex: "game"
+  },
+  {
+    title: "Prize",
+    dataIndex: "prize"
   },
   {
     title: "Team",
@@ -23,12 +27,13 @@ const fetchData = () => new Promise((resolve, reject) => {
     RecordRef.on("value", function(snapshot) {
         snapshot.forEach(function(data) {
           arrayTemp.push({
-            record: `${data.val().prize} Prize ${data.val().game}`,
+            game: `${data.val().game}`,
+            prize: `${data.val().prize}`,
             team: `${data.val().team}`,
             score: `${data.val().score}`
           });
         });
-        return resolve(array)
+        return resolve(arrayTemp);
       });
 })
 
@@ -42,7 +47,7 @@ class RecordBoard extends Component {
 
   componentDidMount = async () => {
     const data = await fetchData()
-    return this.setState({array:data})
+    return this.setState({array:data.reverse()})
   }
 
   render() {
@@ -53,6 +58,7 @@ class RecordBoard extends Component {
           dataSource={this.state.array}
           pagination={{ pageSize: 10 }}
           scroll={{ y: 250 }}
+          locale={{emptyText: 'Wait for Record'}}
         />
       </div>
     );
