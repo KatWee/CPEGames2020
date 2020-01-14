@@ -9,11 +9,11 @@ import {
   FormText
 } from "reactstrap";
 import LoginCSS from "./Login.css";
-import firebase from '../firebase'
+import {auth, firestore} from '../firebase'
 import {withRouter} from 'react-router';
 
 
-const UserRef = firebase.firestore.collection("User");
+const UserRef = firestore.collection("User");
 const myStorage = localStorage;
 
 class Login extends Component {
@@ -52,7 +52,7 @@ class Login extends Component {
 
     const { email, password } = this.state
 
-    firebase.auth
+    auth
       .signInWithEmailAndPassword(email, password)
       .then(response => {
         const UID = UserRef.where('userUID','==',response.user.uid)

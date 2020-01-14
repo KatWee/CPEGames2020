@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Popconfirm, message, Table,Modal} from "antd";
+import { Popconfirm, message, Table, Form } from "antd";
 import CSS from "./AdminRecore.css";
 import firebase from "firebase";
 
@@ -11,26 +11,26 @@ const fetchData = () =>
       snapshot.forEach(function(data) {
         arrayTemp.push({
           game: `${data.val().game}`,
-          prize:`${data.val().prize}`,
+          prize: `${data.val().prize}`,
           team: `${data.val().team}`,
           score: `${data.val().score}`,
-          id: `${data.key}`,
+          id: `${data.key}`
         });
       });
       return resolve(arrayTemp);
     });
   });
 
-function handleDelete (id) {
+function handleDelete(id) {
   var DelRef = firebase.database().ref(id);
   DelRef.remove()
-  .then(function(){
-    message.success("Deleted");
-  })
-  .catch(function(error){
-    message.error("Delete Failed: "+error.message);
-  })
-};
+    .then(function() {
+      message.success("Deleted");
+    })
+    .catch(function(error) {
+      message.error("Delete Failed: " + error.message);
+    });
+}
 
 function cancel(e) {
   console.log(e);
@@ -55,31 +55,18 @@ class AdminRecordBoard extends Component {
       {
         title: "Game",
         dataIndex: "game",
-        editable: true,
       },
       {
         title: "Prize",
         dataIndex: "prize",
-        editable: true,
       },
       {
         title: "Team",
         dataIndex: "team",
-        editable: true,
       },
       {
         title: "Score",
         dataIndex: "score",
-        editable: true,
-      },
-      {
-        title: "Edit",
-        key: "edit",
-        render: (text, record) => (
-          <span>
-              <a className="TableLink" >Edit</a>
-          </span>
-        )
       },
       {
         title: "Delete",
@@ -97,7 +84,7 @@ class AdminRecordBoard extends Component {
             </Popconfirm>
           </span>
         )
-      },
+      }
     ];
 
     return (

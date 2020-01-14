@@ -10,6 +10,14 @@ import Admin from "./user/admin";
 import User from "./user/user";
 import Guard from "./Guard";
 
+// import firebase from "./firebase";
+// firebase.database.ref().on('value', (snapshot) => {
+//    console.log('duneg yoo ja')
+//   console.log(snapshot.val())
+// })
+// console.log('euei')
+
+
 ReactDOM.render(
   // <App />,
   // document.getElementById('root')
@@ -20,7 +28,7 @@ ReactDOM.render(
   // </BrowserRouter>,document.getElementById('root')
   <BrowserRouter>
     {/* <Redirect push to="/user" /> */}
-    <Route path="/" component={Navbar} />
+    {/* <Route path="/" component={Navbar} /> */}
     <Route path="/login" component={Login} />
     <Route path="/user" component={User} />
     <Route path="/admin" component={() => <Guard>{Admin}</Guard>} />
@@ -29,3 +37,4 @@ ReactDOM.render(
   document.getElementById("root")
 );
 serviceWorker.unregister();
+ 

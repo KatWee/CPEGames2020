@@ -27,6 +27,7 @@ const fetchData = () => new Promise((resolve, reject) => {
     RecordRef.on("value", function(snapshot) {
         snapshot.forEach(function(data) {
           arrayTemp.push({
+            key: data.key,
             game: `${data.val().game}`,
             prize: `${data.val().prize}`,
             team: `${data.val().team}`,
