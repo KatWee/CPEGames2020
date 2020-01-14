@@ -10,11 +10,11 @@ import {
 } from "reactstrap";
 import NavBarCss from "./NavBar.css";
 import { Link } from "react-router-dom";
-import firebase from "../firebase/index";
+import {auth} from "../firebase";
 
 // const [isOpen, setIsOpen] = useState(false);
 // const toggle = () => setIsOpen(!isOpen);
-const myStorage = localStorage;
+// const myStorage = localStorage;
 class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -25,10 +25,10 @@ class NavBar extends Component {
   }
 
   componentDidMount() {
-    firebase.auth.onAuthStateChanged(user => {
+    auth.onAuthStateChanged(user => {
       if (user) {
         this.setState({
-          currentUser: user
+          currentUser: user.email
         });
       }
     });
@@ -44,9 +44,9 @@ class NavBar extends Component {
 
   logout = e => {
     e.preventDefault();
-    firebase.auth.signOut().then(response => {
-      myStorage.clear();
-      this.props.history.push("/user");
+    auth.signOut().then(response => {
+      // myStorage.clear();
+      this.props.history.push("/");
       this.setState({
         currentUser: null
       });
@@ -61,7 +61,7 @@ class NavBar extends Component {
             {this.state.currentUser ? (
               <Link to="/admin" className="NavLink">ADMIN CPE GAMES 2020</Link>
             ) : (
-              <Link to="/user" className="NavLink">CPE GAMES 2020</Link>
+              <Link to="/" className="NavLink">CPE GAMES 2020</Link>
             )}
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
@@ -70,7 +70,7 @@ class NavBar extends Component {
               {this.state.currentUser ? (
                 <React.Fragment>
                   <NavItem>
-              <NavbarText onClick={this.toggle}>Hello {myStorage.getItem('admin')}</NavbarText>
+              <NavbarText onClick={this.toggle}>Hello {this.state.currentUser}</NavbarText>
                   </NavItem>
                   <NavItem>
                     <Link onClick={this.logout}>Logout</Link>

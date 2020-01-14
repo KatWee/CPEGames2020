@@ -28,11 +28,12 @@ ReactDOM.render(
   // </BrowserRouter>,document.getElementById('root')
   <BrowserRouter>
     {/* <Redirect push to="/user" /> */}
-    {/* <Route path="/" component={Navbar} /> */}
+    <Route path="*" component={Navbar} />
+    <Route exact path="/" component={User} />
     <Route path="/login" component={Login} />
-    <Route path="/user" component={User} />
-    <Route path="/admin" component={() => <Guard>{Admin}</Guard>} />
-    <Route path="/admin" component={Admin} />
+    {/* <Route path="/admin" component={Admin} /> */}
+    <Route path="/admin" component={() => <Guard><Admin/></Guard>} />
+    {/* <Route path="/admin" component={Admin} /> */}
   </BrowserRouter>,
   document.getElementById("root")
 );

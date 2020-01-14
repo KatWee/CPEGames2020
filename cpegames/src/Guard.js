@@ -1,15 +1,12 @@
 import React from 'react'
-import {withRouter} from 'react-router'
+import {Redirect} from 'react-router'
+import {auth} from './firebase'
 
-const myStorage = localStorage;
+const adminList = ['ubUAyr2Ek9bYQhhTE5oVJ0XB7WA3','6S36oWUNKJWwK2Ji1te5jS2k6M32' ]
 function Guard(props) {
-    if(!myStorage.getItem('admin'))
-    {
-        //console.log('redirrecting')
-        props.history.push('/user')
-    }
-     console.log(myStorage.getItem('admin'))
-    return props.children
+    return (
+    <div>{props.children}</div>
+    )
 }
 
-export default withRouter(Guard);
+export default Guard;

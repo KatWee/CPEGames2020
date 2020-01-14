@@ -14,7 +14,7 @@ import {withRouter} from 'react-router';
 
 
 const UserRef = firestore.collection("User");
-const myStorage = localStorage;
+// const myStorage = localStorage;
 
 class Login extends Component {
   // componentDidMount() {
@@ -59,10 +59,10 @@ class Login extends Component {
         .get().then(doc => {
           doc.forEach(data =>{
             console.log("userName",data.data().UserName)
-            myStorage.setItem('admin', data.data().UserName);
-            console.log(myStorage.getItem('admin'))
+            // myStorage.setItem('admin', data.data().UserName);
+            // console.log(myStorage.getItem('admin'))
           })
-          this.props.history.push('/admin')
+          return this.props.history.push('/admin')
         })
         // this.setState({
         //   currentUser: response.user
